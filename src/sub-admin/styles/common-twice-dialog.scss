@@ -1,0 +1,36 @@
+.reset-twice-dialog-input{
+  .el-input__wrapper{
+    border-radius: 0;
+    height: 40px;
+    // background: var(--main-color-bg-gray);
+    // box-shadow: none;
+    // &.is-focus, &:hover{
+    //   box-shadow: none;
+    // }
+  }
+
+  .el-button{
+    height: 42px;
+    width: 120px;
+  }
+  .el-button--primary{
+    background: var(--main-color);
+    border: none;
+    &:hover, &:focus{
+      background: var(--main-color);
+    }
+  }
+  .el-button--info{
+    background: var(--main-color-bg-gray);
+    border: none;
+    color: var(--main-color);
+    &:hover, &:focus{
+      color: var(--main-color);
+      background: var(--main-color-bg-gray);
+    }
+  }
+
+  .el-select{
+    width: 100%;
+  }
+}

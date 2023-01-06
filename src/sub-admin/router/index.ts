@@ -1,16 +1,15 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import env from '@/common/env';
 import Login from '../views/login/index.vue';
+import layout from './slidebar';
 
 const routes: Readonly<RouteRecordRaw[]> = [
-  {
-    path: '/',
-    redirect: '/login'
-  },
   {
     path: '/login',
     name: 'Login',
     component: Login
   },
+  layout,
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -19,7 +18,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/vise/admin'),
+  history: createWebHistory(env.BASE_ROUTE_URL+'/admin'),
   routes: routes,
 })
 

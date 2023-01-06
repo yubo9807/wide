@@ -3,10 +3,11 @@
  * @Author: yangyb
  * @Date: 2022-02-23 08:58:26
  * @LastEditors: yangyubo
- * @LastEditTime: 2022-11-27 19:08:47
+ * @LastEditTime: 2022-12-20 15:46:37
  */
 
 import { AxiosInstance } from 'axios';
+import { ElMessage } from 'element-plus';
 
 interface Option {
   retries?: number,
@@ -71,4 +72,22 @@ export function asyncto(promise: Promise<any>, errorExt: string = '') {
       }
       return [ err, null ];
     })
+}
+
+/**
+ * 断网提示
+ */
+export function fractureTips() {
+  window.addEventListener('online', () => {
+    ElMessage.closeAll();
+    ElMessage.success('网络恢复');
+  })
+  window.addEventListener('offline', () => {
+    ElMessage({
+      type: 'error',
+      message: '网络中断',
+      duration: 0,
+      showClose: true
+    });
+  })
 }

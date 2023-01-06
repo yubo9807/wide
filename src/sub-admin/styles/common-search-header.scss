@@ -1,0 +1,28 @@
+.reset-search-header-input{
+
+  .el-input, .el-select{
+    float: left;
+    width: 294px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .el-button+.el-button{
+    margin-left: 8px;
+  }
+  
+  .el-input__wrapper{
+    height: 40px;
+    border-radius: 4px;
+  }
+  
+  .el-input, .el-select, .el-date-editor.el-input, .el-date-editor.el-input__wrapper{
+    height: 42px;
+    box-sizing: border-box;
+  }
+  
+  .el-button{
+    border-radius: 4px;
+    height: 42px;
+    width: 100px;
+  }
+}

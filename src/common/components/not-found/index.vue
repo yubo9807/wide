@@ -1,5 +1,5 @@
 <template>
-  <div class="leayer page-not-found">
+  <div class="page-not-found">
     <div class="text-404">404</div>
     <router-link to="/" replace>返回首页</router-link>
   </div>

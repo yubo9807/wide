@@ -4,12 +4,19 @@
  */
 <template>
   <router-view v-slot="{ Component }">
-    <keep-alive>
+    <keep-alive :include="include">
       <component :is="Component"/>
     </keep-alive>
   </router-view>
 </template>
 
-<script lang='ts'>
-export default {}
+<script>
+export default {
+  props: {
+    include: {
+      type: Array,
+      default: () => [],
+    }
+  },
+}
 </script>

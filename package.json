@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "rm -rf dist && vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
+    "@splinetool/runtime": "^0.9.173",
     "axios": "^1.2.0",
     "element-plus": "^2.2.22",
     "pinia": "^2.0.25",

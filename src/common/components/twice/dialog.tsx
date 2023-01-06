@@ -5,7 +5,6 @@ import './dialog.scss';
 /**
  * 弹窗二次封装
  * @note 对 header 做了修改
- * @note 下面的 input/button 框样式修改
  */
 export default defineComponent({
 

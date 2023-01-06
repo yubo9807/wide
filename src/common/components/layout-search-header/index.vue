@@ -16,7 +16,7 @@ export default {
   props: {
     rightWidth: {
       type: String,
-      default: '250px'
+      default: '210px'
     }
   }
 }
@@ -34,28 +34,6 @@ export default {
       display: inline-block;
       vertical-align: top;
     }
-  }
-
-  .el-input__wrapper{
-    border-radius: 0;
-    height: 40px;
-    background: var(--main-color-bg-gray);
-    box-shadow: none;
-    &.is-focus, &:hover{
-      box-shadow: none;
-    }
-  }
-
-  .el-select, .el-date-editor.el-input, .el-date-editor.el-input__wrapper{
-    width: 100%;
-    height: 42px;
-    box-sizing: border-box;
-  }
-
-  .el-button{
-    border-radius: 0;
-    height: 42px;
-    width: 100px;
   }
 }
 </style>

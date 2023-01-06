@@ -1,11 +1,20 @@
 /**
  * 重置组件 props 属性
  */
-import { ElTableColumn, ElPagination, ElDatePicker, ElInput, ElSelect } from 'element-plus'
+import { ElTableColumn, ElPagination, ElDatePicker, ElInput, ElSelect, ElLink, ElTreeSelect } from 'element-plus'
 
 Object.defineProperties(ElTableColumn.props, {
   showOverflowTooltip: {
     value: { default: true }
+  },
+})
+
+Object.defineProperties(ElLink.props, {
+  underline: {
+    value: { default: false }
+  },
+  type: {
+    value: { default: 'info' }
   },
 })
 
@@ -18,6 +27,9 @@ Object.defineProperties(ElPagination.props, {
   },
   layout: {
     value: { default: 'sizes, prev, pager, next, jumper, total' }
+  },
+  hideOnSinglePage: {
+    value: { default: true }
   },
 })
 
@@ -33,6 +45,17 @@ Object.defineProperties(ElInput.props, {
 Object.defineProperties(ElSelect.props, {
   placeholder: {
     value: { default: '请选择' }
+  },
+  clearable: {
+    value: { default: true }
+  },
+})
+Object.defineProperties(ElTreeSelect.props, {
+  placeholder: {
+    value: { default: '请选择' }
+  },
+  clearable: {
+    value: { default: true }
   },
 })
 

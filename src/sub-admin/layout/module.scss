@@ -1,0 +1,40 @@
+
+.side, .main{
+  float: left;
+}
+
+$sideWidth: 240px;
+.side{
+  width: $sideWidth;
+  height: 100vh;
+  color: white;
+  position: relative;
+}
+.main{
+  width: calc(100% - $sideWidth);
+  height: 100vh;
+  background: #F5F6F7;
+}
+
+.logo{
+  text-align: center;
+  padding: 24px 0;
+}
+
+.open{
+  position: absolute;
+  bottom: 34px;
+  left: 40px;
+  color: black;
+  cursor: pointer;
+}
+
+.unfold{
+  $sideWidth: 94px;
+  .side{
+    width: $sideWidth;
+  }
+  .main{
+    width: calc(100% - $sideWidth);
+  }
+}

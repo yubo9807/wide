@@ -1,0 +1,66 @@
+// 清除浮动
+.clearfix::after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.space-between{
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-highlight{
+  position: relative;
+  overflow: hidden;
+  &::before, &::after{
+    content: '';
+    position: absolute;
+    top: -50%;
+    background: linear-gradient(200deg, rgba(255,255,255,.4) 2%, rgba(255,255,255,0));
+    right: -20px;
+    height: 100px;
+    transform: rotate(-20deg) translateX(40px);
+  }
+  &::after{
+    width: 36px;
+    transition: transform .4s linear .2s;
+  }
+  &::before{
+    width: 56px;
+    transition: transform .4s linear;
+  }
+  &:hover{
+    &::before, &::after{
+      transform: rotate(-20deg);
+    }
+  }
+}
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('@/assets/iconfont/iconfont.eot');
+  src: url('@/assets/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+       url('@/assets/iconfont/iconfont.woff2') format('woff2'),
+       url('@/assets/iconfont/iconfont.woff') format('woff'),
+       url('@/assets/iconfont/iconfont.ttf') format('truetype'),
+       url('@/assets/iconfont/iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.table-operation-btn{
+  cursor: pointer;
+  &:not(:last-child){
+    margin-right: 19px;
+  }
+}

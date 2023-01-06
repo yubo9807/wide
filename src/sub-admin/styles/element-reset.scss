@@ -1,0 +1,77 @@
+.el-pagination{
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.el-date-editor--timerange.el-input__inner{
+  width: 100%;
+}
+
+.el-dropdown{
+  vertical-align: middle;
+}
+
+.el-pagination.is-background .btn-next.is-active, .el-pagination.is-background .btn-prev.is-active, .el-pagination.is-background .el-pager li.is-active{
+  background: var(--main-color);
+}
+
+.el-form-item{
+  margin-bottom: 14px;
+  .el-form-item__label{
+    padding: 0;
+  }
+  &:last-child{
+    margin-bottom: 24px;
+  }
+}
+
+.el-button:focus, .el-button:hover{
+  color: var(--main-color);
+}
+.el-button--primary, .el-button--info{
+  border: none;
+}
+.el-button--primary{
+  background: var(--main-color);
+  &:hover, &:focus{
+    background: var(--main-color);
+    color: white;
+  }
+}
+.el-button--info{
+  background: var(--main-color-bg-gray);
+  color: var(--main-color);
+  &:hover, &:focus{
+    color: var(--main-color);
+    background: var(--main-color-bg-gray);
+  }
+}
+
+.el-link{
+  margin-right: 8px;
+}
+
+.el-loading-mask{
+  background: transparent;
+}
+
+.el-checkbox__input{
+  &.is-checked, &.is-indeterminate{
+    .el-checkbox__inner{
+      background: var(--main-color);
+      border-color: var(--main-color);
+    }
+  }
+}
+
+.el-table{
+  color: var(--main-font-color);
+  .el-table__footer-wrapper, .el-table__header-wrapper{
+    border-radius: 4px 4px 0 0;
+  }
+  .el-table__header-wrapper tr th.el-table-fixed-column--left, .el-table__header-wrapper tr th.el-table-fixed-column--right, th.el-table__cell{
+    background: var(--table-header-bg);
+    color: var(--main-font-color);
+    height: 52px;
+  }
+}

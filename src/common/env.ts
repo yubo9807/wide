@@ -10,9 +10,7 @@ let env = {
 
   NODE_ENV: process.env.NODE_ENV,
 
-  BASE_API: '/api',
-
-  BASE_ROUTE_URL: '/vise',
+  BASE_ROUTE_URL: '/wide',
 
   VISIT_ORIGIN,
 

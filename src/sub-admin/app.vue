@@ -1,13 +1,23 @@
+
 <template>
-  <router-view />
+  <el-config-provider :locale="zhCn">
+    <router-view />
+  </el-config-provider>
 </template>
 
 <script lang="ts">
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 export default {
   setup() {
-    console.log(1111)
-    return {}
+    document.title = '跨链服务平台'
+    return {
+      zhCn
+    }
   }
 }
+
 </script>
+
+<style lang='scss' scoped>
+</style>

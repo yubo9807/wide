@@ -1,5 +1,5 @@
 <template>
-  <main class="leayer layout-container">
+  <main class="layout-container">
     <slot />
   </main>
 </template>
@@ -10,7 +10,12 @@ export default {}
 
 <style>
 .layout-container{
-  margin-top: 14px;
+  margin: 14px;
+  margin-top: 0;
+  padding: 14px 15px;
+  border-radius: 4px;
+  background: white;
+  min-height: calc(100vh - 150px);
 }
 </style>
 
