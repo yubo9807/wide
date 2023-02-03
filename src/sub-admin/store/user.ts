@@ -6,7 +6,7 @@ import { AnyObj } from "@/common/utils/type";
 export const DEBUGING = false;  // 在后端接口不通的情况下，开启它跳转相应的路有进行开发
 
 export const ROLE_CONFIG = Object.freeze({
-  1: 'admin',
+  super: 'super',
   2: 'user'
 })
 
@@ -16,7 +16,7 @@ let lock = false;
 export function getToken() {
   return localStorage.getItem(TOKEN);
 }
-function setToken(value) {
+function setToken(value: string) {
   localStorage.setItem(TOKEN, value);
 }
 function delToken() {
@@ -46,7 +46,7 @@ export default defineStore({
      * 设置用户信息
      * @note 有些后端喜欢把信息返回在登录接口内
      */
-    setInfo(info: any) {
+    setInfo(info: AnyObj) {
       this.info = info;
     },
 
@@ -78,7 +78,7 @@ export default defineStore({
       if (err) return;
 
       this.info = res.data;
-      this.role = ROLE_CONFIG[res.data.roles[0].roleid];
+      this.role = ROLE_CONFIG[res.data.role]
       this.login = 1;
       lock = false;
     },

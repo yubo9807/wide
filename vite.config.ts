@@ -4,14 +4,14 @@ import path from 'path';
 declare const __dirname: string;
 
 const proxy = {
-  '/trust-cross': {
-    target: 'http://10.0.5.71/',
+  '/api': {
+    target: 'http://127.0.0.1:20010',
     changeOrigin: true,
   },
   '/permissions': {
-    target: 'http://power.hpyyb.cn/',
+    target: 'http://127.0.0.1:20020',
     changeOrigin: true,
-  }
+  },
 }
 
 // https://vitejs.dev/config/
@@ -35,16 +35,16 @@ export default defineConfig({
   root: 'page',
   publicDir: path.resolve(__dirname, './public'),
   build: {
-    outDir: path.resolve(__dirname, './dist'),
     minify: true,
-    // sourcemap: true,
     chunkSizeWarningLimit: 1000,
+    outDir: path.resolve(__dirname, './dist'),
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'page/index.html'),
-        // admin: path.resolve(__dirname, 'page/admin/index.html'),
-        permissions: path.resolve(__dirname, 'page/permissions/index.html'),
+
         // www: path.resolve(__dirname, 'page/www/index.html'),
+        // admin: path.resolve(__dirname, 'page/admin/index.html'),
+        // permissions: path.resolve(__dirname, 'page/permissions/index.html'),
       },
       output: {
         manualChunks(url) { // 分包

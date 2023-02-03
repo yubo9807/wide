@@ -15,7 +15,7 @@ interface SateConfig extends AxiosRequestConfig {
 let loading = null;
 
 const config: AxiosRequestConfig = {
-  baseURL: '/trust-cross',
+  baseURL: '/api',
   timeout: 5000,
 };
 
@@ -30,11 +30,10 @@ const instance = axios.create(config);
 // 请求拦截器
 instance.interceptors.request.use(config => {
   loading = ElLoading.service({ lock: true });
-  config.headers['Content-Type'] = 'multipart/form-data;';
   // 有 token 的话将其放在 headers 中
   const authorization = getToken();
   if (authorization) {
-    config.headers.Authorization = 'Bearer ' + authorization;
+    config.headers.Authorization = authorization;
   }
   return config;
 })
@@ -78,7 +77,7 @@ instance.interceptors.response.use((response) => {
         return Promise.reject(data);
       }
       
-      !(config as SateConfig).noTips && ElMessage.error(data.message);
+      !(config as SateConfig).noTips && ElMessage.error(data.msg);
       return Promise.reject(data);
     }
 

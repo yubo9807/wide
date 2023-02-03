@@ -1,5 +1,5 @@
 import useStoreTabs from '@/sub-admin/store/tabs';
-import { watch, ref, Ref, getCurrentInstance, nextTick } from 'vue';
+import { watch, ref, Ref, getCurrentInstance, nextTick, reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 export default () => {
@@ -17,7 +17,9 @@ export default () => {
   
   watch(() => storeTabs.names, value => {
     renderTabs(value);
-    calculativeWidth();
+    nextTick(() => {
+      (current.refs.mouseWheelX as any).refresh()
+    })
   }, { immediate: true, deep: true })
 
   function renderTabs(names: string[]) {
@@ -32,32 +34,56 @@ export default () => {
     tabs.value = arr;
   }
 
-  const wrapWidth = ref(0);
-  function calculativeWidth() {
-    nextTick(() => {
-      const arr = current.refs.item;
-      let width = 0;
-      (arr as HTMLElement[]).forEach(val => {
-        width += val.offsetWidth;
-      });
-      wrapWidth.value = width;
-    })
+  function jump(name: string) {
+    router.push({ name });
+  }
+
+
+
+  // #region 右键菜单
+  let selectTab: Tab = null;
+  const isMenu = ref(false);
+  const menuPosition = reactive({
+    top: 0,
+    left: 0,
+  });
+
+  /**
+   * 右键菜单
+   */
+  function rightMenu(e: MouseEvent, item: Tab) {
+    e.preventDefault();
+    selectTab = item;
+    isMenu.value = true;
+    menuPosition.top = e.clientY;
+    menuPosition.left = e.clientX;
   }
 
   /**
-   * 关闭自个儿
+   * 关闭指定tab
    */
-  function close(item: Tab) {
-    storeTabs.del(item.name);
+  function close(name: string) {
+    storeTabs.del(name);
     renderTabs(storeTabs.names);
+    if (name === nowRouteName.value) {
+      router.push({ name: tabs.value[tabs.value.length - 1].name });
+    }
+  }
+
+  function closeOwn() {
+    close(selectTab.name);
+    isMenu.value = false;
   }
 
   /**
    * 关闭其他
    */
-  function closeOther(item: Tab) {
-    storeTabs.clearOther(item.name);
+  function closeOther() {
+    storeTabs.clearAll();
     renderTabs(storeTabs.names);
+    storeTabs.add(selectTab.name);
+    router.push({ name: selectTab.name });
+    isMenu.value = false;
   }
 
   /**
@@ -66,7 +92,11 @@ export default () => {
   function closeAll() {
     storeTabs.clearAll();
     renderTabs(storeTabs.names);
+    router.push('/');
+    isMenu.value = false;
   }
+  // #endregion
+
 
 
   const nowRouteName = ref('');
@@ -77,11 +107,15 @@ export default () => {
 
   return {
     tabs,
+    jump,
     close,
+    closeOwn,
     closeOther,
     closeAll,
 
-    wrapWidth,
+    isMenu,
+    menuPosition,
+    rightMenu,
 
     nowRouteName,
   }

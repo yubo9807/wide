@@ -7,6 +7,10 @@
 </template>
 
 <script lang="ts">
+/**
+ * 开状态按钮
+ * @props value
+ */
 export default {
   props: {
     value: {

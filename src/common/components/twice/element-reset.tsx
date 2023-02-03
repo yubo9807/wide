@@ -1,7 +1,7 @@
 /**
  * 重置组件 props 属性
  */
-import { ElTableColumn, ElPagination, ElDatePicker, ElInput, ElSelect, ElLink, ElTreeSelect } from 'element-plus'
+import { ElTableColumn, ElPagination, ElDatePicker, ElInput, ElSelect, ElLink } from 'element-plus'
 
 Object.defineProperties(ElTableColumn.props, {
   showOverflowTooltip: {
@@ -43,14 +43,6 @@ Object.defineProperties(ElInput.props, {
 })
 
 Object.defineProperties(ElSelect.props, {
-  placeholder: {
-    value: { default: '请选择' }
-  },
-  clearable: {
-    value: { default: true }
-  },
-})
-Object.defineProperties(ElTreeSelect.props, {
   placeholder: {
     value: { default: '请选择' }
   },

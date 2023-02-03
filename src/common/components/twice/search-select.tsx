@@ -1,6 +1,9 @@
 import { ElSelect } from "element-plus";
 import { defineComponent, getCurrentInstance, h } from "vue";
 
+/**
+ * 搜索区选择框(二次封装)
+ */
 export default defineComponent({
 
   props: {

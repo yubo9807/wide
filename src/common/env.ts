@@ -1,4 +1,6 @@
-declare const process: any;
+import { AnyObj } from "./utils/type";
+
+declare const process: AnyObj;
 
 export const DEVELOPMENT = 'development';
 export const PRODUCTION  = 'production';
@@ -13,6 +15,10 @@ let env = {
   BASE_ROUTE_URL: '/wide',
 
   VISIT_ORIGIN,
+
+  SYSTEM_NAME: '',
+
+  BASE_RESOURCE_URL: 'http://assets.hpyyb.cn',
 
 };
 

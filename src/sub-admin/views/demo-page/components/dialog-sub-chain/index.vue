@@ -41,6 +41,9 @@ export default {
   components: {
     TwiceDialog,
   },
+  emits: [
+    'success',  // 提交成功后，刷新数据
+  ],
   setup,
 }
 </script>

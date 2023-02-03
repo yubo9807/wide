@@ -6,7 +6,7 @@
 
 export default {
   setup() {
-    document.title = '页面2'
+    document.title = '站点';
     return {}
   }
 }

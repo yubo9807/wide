@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf dist && vue-tsc && vite build",
+    "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.0.10",
-    "@splinetool/runtime": "^0.9.173",
+    "@better-scroll/core": "^2.5.0",
+    "@better-scroll/mouse-wheel": "^2.5.0",
+    "@splinetool/runtime": "^0.9.178",
     "axios": "^1.2.0",
+    "echarts": "^5.4.1",
     "element-plus": "^2.2.22",
     "pinia": "^2.0.25",
     "vue": "^3.2.41",

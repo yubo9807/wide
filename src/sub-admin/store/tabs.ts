@@ -37,18 +37,10 @@ export default defineStore({
     },
 
     /**
-     * 删除其他
-     * @param name 
-     */
-    clearOther(name: string) {
-      this.names = this.exclude.concat([name]);
-    },
-
-    /**
      * 清空全部
      */
     clearAll() {
-      this.names = this.exclude;
+      this.names = [];
     },
   }
 

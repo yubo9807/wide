@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import LayoutSearchHeader from '@/common/components/layout-search-header/index.vue'
+import LayoutSearchHeader from '@/common/components/layout-both-sides/index.vue'
 import TableAddBtn from '../table-add-btn/index.vue';
 import DialogElement from '../dialog-element/index.vue';
 

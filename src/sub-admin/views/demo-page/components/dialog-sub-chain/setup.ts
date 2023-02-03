@@ -1,4 +1,4 @@
-import { api_createSubChain } from "@/sub-admin/api/sub-chain";
+import { api_getAccessRecordList } from "@/sub-admin/api/access";
 import { FormInstance } from "element-plus";
 import { getCurrentInstance, reactive, Ref, ref, watch } from "vue";
 
@@ -32,7 +32,7 @@ export default () => {
     formRef.value.validate(async valid => {
       if (!valid) return;
 
-      const [err] = await api_createSubChain({});
+      const [err] = await api_getAccessRecordList({});
       if (err) return;
       current.emit('success');
     })

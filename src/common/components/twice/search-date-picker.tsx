@@ -2,6 +2,10 @@ import { ElDatePicker } from "element-plus";
 import { defineComponent, getCurrentInstance, h } from "vue";
 
 const NewElDatePicker: any = ElDatePicker
+
+/**
+ * 搜索区时间选择(二次封装)
+ */
 export default defineComponent({
 
   props: {

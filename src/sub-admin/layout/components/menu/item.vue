@@ -3,7 +3,7 @@
     <a v-if="menu.children && menu.children.length > 0" :class="[isOpen?'active':'']" @click="open">
       <i class="iconfont icon" v-html="menu.icon"></i>
       <span v-show="!unfold">{{ menu.title }}</span>
-      <i class="icon-open"><IconArrowRight/></i>
+      <i class="iconfont icon-open">&#xe64b;</i>
     </a>
     <router-link v-else :to="{ name: menu.name }">
       <i class="iconfont icon" v-html="menu.icon"></i>
@@ -22,19 +22,34 @@
 </template>
 
 <script lang="ts">
-import { ref, getCurrentInstance, computed } from 'vue'
+import { ref, getCurrentInstance, computed, PropType, nextTick } from 'vue'
 import useStoreSlidebar from '@/sub-admin/store/slidebar';
+
+type MenuType = {
+  children: MenuType[],
+  icon: string,
+  title: string,
+  name: string,
+}
 
 export default {
   name: 'MenuItem',
   props: {
     menu: {
-      type: Object,
+      type: Object as PropType<MenuType>,
       default: () => ({}),
+    },
+    nowRoutes: {
+      type: Array as PropType<string[]>,
+      default: []
     }
   },
-  setup() {
+  setup(props) {
     const current = getCurrentInstance();
+
+    if (props.nowRoutes.includes(props.menu.name)) {
+      nextTick(open)
+    }
 
     const isOpen = ref(false);
     const height = ref('0');
@@ -75,70 +90,68 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-  li{
-    cursor: pointer;
-  }
-  a{
-    display: inline-block;
-    width: 100%;
-    height: 100%;
+li{
+  cursor: pointer;
+}
+a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  line-height: 56px;
+  padding: 0 24px;
+  box-sizing: border-box;
+  .icon-open{
+    float: right;
     line-height: 56px;
-    padding: 0 24px;
-    box-sizing: border-box;
-    .icon-open{
-      float: right;
-      line-height: 42px;
-      text-align: center;
-      width: 16px;
-      transform-origin: center center;
-      transition: transform .4s;
-    }
-    &.active .icon-open{
-      display: inline-block;
-      transform: rotate(90deg);
-    }
-    &.router-link-active, &:hover{
-      color: white;
-      background: var(--main-color);
-      border-radius: 4px;
-    }
+    text-align: center;
+    width: 16px;
+    transform-origin: center center;
+    transition: transform .4s;
+  }
+  &.active .icon-open{
+    display: inline-block;
+    transform: rotate(90deg);
+  }
+  &.router-link-active, &:hover{
+    color: white;
+    background: var(--main-color);
+    border-radius: 4px;
+  }
 
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  &::before, &::after{
+    content: '';
+    position: absolute;
+    top: -50%;
+    background: linear-gradient(200deg, rgba(255,255,255,.4) 2%, rgba(255,255,255,0));
+    right: -10px;
+    height: 100px;
+    transform: rotate(-20deg) translateX(40px);
+  }
+  &::after{
+    width: 36px;
+    transition: transform .4s linear .2s;
+  }
+  &::before{
+    width: 56px;
+    transition: transform .4s linear;
+  }
+  &.router-link-active, &:hover{
     &::before, &::after{
-      content: '';
-      position: absolute;
-      top: -50%;
-      background: linear-gradient(200deg, rgba(255,255,255,.4) 2%, rgba(255,255,255,0));
-      right: -10px;
-      height: 100px;
-      transform: rotate(-20deg) translateX(40px);
-    }
-    &::after{
-      width: 36px;
-      transition: transform .4s linear .2s;
-    }
-    &::before{
-      width: 56px;
-      transition: transform .4s linear;
-    }
-    &.router-link-active, &:hover{
-      &::before, &::after{
-        transform: rotate(-20deg);
-      }
+      transform: rotate(-20deg);
     }
   }
+}
 
-  .icon{
-    margin-right: 6px;
-  }
+.icon{
+  margin-right: 6px;
+}
 
-  .menu{
-    height: 0;
-    overflow: hidden;
-    transition: height .4s;
-    padding-left: 20px;
-  }
-
+.menu{
+  height: 0;
+  overflow: hidden;
+  transition: height .4s;
+  padding-left: 20px;
+}
 </style>

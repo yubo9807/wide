@@ -1,6 +1,6 @@
 <template>
   <ul class="menu">
-    <MenuItem v-for="(item, index) in navList" :key="index" :menu="item" />
+    <MenuItem v-for="(item, index) in navList" :key="index" :menu="item" :nowRoutes="nowRoutes" />
   </ul>
 </template>
 

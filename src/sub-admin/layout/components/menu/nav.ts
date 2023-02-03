@@ -1,9 +1,13 @@
 import { Apple } from "@element-plus/icons-vue";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 export default () => {
   const $router = useRouter();
+
+  const $route = useRoute();
+  const nowRoutes = ref([]);
+  nowRoutes.value = $route.matched.map(val => val.name);
   
   const layoutRoutes = $router.options.routes
     .find(val => val.name === 'Layout')
@@ -37,5 +41,6 @@ export default () => {
 
   return {
     navList: regularity(layoutRoutes),
+    nowRoutes,
   }
 }

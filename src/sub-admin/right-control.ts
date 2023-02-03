@@ -1,7 +1,6 @@
 import router from './router';
 import useStoreUser from './store/user';
 
-const layoutRoutes = router.options.routes[1].children;
 Promise.resolve().then(() => {
   const storeUser = useStoreUser();
   let lock = true;

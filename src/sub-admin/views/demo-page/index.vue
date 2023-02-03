@@ -49,7 +49,7 @@
 
 <script lang='ts'>
 import LayoutContainer from '@/common/components/layout-container/index.vue';
-import LayoutSearch from '@/common/components/layout-search-header/index.vue';
+import LayoutSearch from '@/common/components/layout-both-sides/index.vue';
 import TwiceSearchInput from '@/common/components/twice/search-input';
 import TwiceSearchSelect from '@/common/components/twice/search-select';
 import TwiceSearchDatePicker from '@/common/components/twice/search-date-picker';

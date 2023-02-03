@@ -1,49 +1,38 @@
 <template>
-  <div class="page-login">
-    <h1 class="title">跨链服务平台</h1>
-    <SignIn v-if="type" />
-    <SignUp v-else />
-    <!-- <el-link class="btn" type="primary" @click="type = !type">{{ type ? '注册' : '登录' }}</el-link> -->
+  <div class="logo-wrap">
+    <h1 class="title">{{ SYSTEM_NAME }}</h1>
+    <el-form :model="form" label-width="50" label-position="left">
+      <el-form-item label="帐号">
+        <el-input v-model="form.username" placeholder="请输入帐号" />
+      </el-form-item>
+      <el-form-item label="密码">
+        <el-input v-model="form.password" placeholder="请输入密码" type="password" @keyup.enter="signIn" />
+      </el-form-item>
+    </el-form>
+    <el-button @click="visitorSignIn">访客登录</el-button>
+    <el-button type="primary" @click="signIn">登录</el-button>
   </div>
 </template>
 
-<script lang="ts">
-import { ref } from 'vue';
-import SignIn from './components/sign-in/index.vue'
-import SignUp from './components/sign-up/index.vue'
-export default {
-  components: {
-    SignIn,
-    SignUp
-  },
-  setup() {
-    const type = ref(true);
+<script lang='ts'>
+import setup from './setup';
 
-    return {
-      type,
-    }
-  }
+export default {
+  setup
 }
 </script>
 
 <style lang="scss" scoped>
-.page-login{
-  width: 320px;
-  margin: 150px auto;
+.logo-wrap{
+  margin: 100px auto;
   padding: 20px;
-  box-shadow: 0 4px 10px 4px rgba(0,0,0,.1);
-  position: relative;
+  max-width: 320px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
   .title{
-    text-align: center;
-    margin-bottom: 14px;
-    letter-spacing: 6px;
-  }
-
-  .btn{
-    position: absolute;
-    top: 24px;
-    right: 20px;
+    font-size: 1.4em;
+    margin-bottom: 20px;
   }
 }
-
 </style>

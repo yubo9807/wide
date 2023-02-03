@@ -5,6 +5,9 @@
 </template>
 
 <script lang="ts">
+/**
+ * 管理端每个页面的容器
+ */
 export default {}
 </script>
 
@@ -15,7 +18,7 @@ export default {}
   padding: 14px 15px;
   border-radius: 4px;
   background: white;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 160px);
 }
 </style>
 

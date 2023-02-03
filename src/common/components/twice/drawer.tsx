@@ -3,7 +3,7 @@ import { defineComponent, getCurrentInstance, h } from "vue";
 import './dialog.scss';
 
 /**
- * 弹窗二次封装
+ * 抽屉(二次封装)
  */
 export default defineComponent({
 

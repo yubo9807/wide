@@ -53,7 +53,7 @@
 
 <script lang='ts'>
 import LayoutContainer from '@/common/components/layout-container/index.vue';
-import LayoutSearch from '@/common/components/layout-search-header/index.vue';
+import LayoutSearch from '@/common/components/layout-both-sides/index.vue';
 import DrawerConfig from './components/drawer-config/index.vue';
 import TableAddBtn from './components/table-add-btn/index.vue';
 import DialogMenu from './components/dialog-menu/index.vue';

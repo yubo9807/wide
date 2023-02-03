@@ -1,0 +1,73 @@
+.input-search-shrink{
+  position: relative;
+
+  .custom-column {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 18px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .input-item, .button-item{
+    float: left;
+    margin-bottom: 10px;
+  }
+  .input-item{
+    margin-right: 10px;
+    width: 210px;
+  }
+  .button-item{
+    margin-left: 10px;
+  }
+
+  .table-shrink-wrap {
+    .ghost-class{
+      opacity: 0;
+    }
+
+    // 空数组之在的样式，设置了这个样式才能拖入
+    .transition-group{
+      min-height: 44px;
+      display: block;
+    }
+
+    .yet-add, .no-add {
+      .item {
+        display: inline-block;
+        padding: 2px 8px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+    }
+
+    .icon-add, .icon-del {
+      cursor: pointer;
+      color: #2591fd;
+      margin-left: 6px;
+      font-size: 12px;
+    }
+
+    .line {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
+    }
+
+  }
+
+  .btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    .btn-left{
+      display: flex;
+      cursor: pointer;
+      .add-all{
+        margin-right: 10px;
+      }
+    }
+  }
+}

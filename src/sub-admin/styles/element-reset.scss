@@ -47,8 +47,8 @@
   }
 }
 
-.el-link{
-  margin-right: 8px;
+.el-link:not(:last-child){
+  margin-right: 6px;
 }
 
 .el-loading-mask{

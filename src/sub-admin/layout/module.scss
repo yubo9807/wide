@@ -8,11 +8,11 @@ $sideWidth: 240px;
   width: $sideWidth;
   height: 100vh;
   color: white;
-  position: relative;
+  position: fixed;
 }
 .main{
   width: calc(100% - $sideWidth);
-  height: 100vh;
+  margin-left: $sideWidth;
   background: #F5F6F7;
 }
 
@@ -27,6 +27,9 @@ $sideWidth: 240px;
   left: 40px;
   color: black;
   cursor: pointer;
+  .icon{
+    margin-right: 6px;
+  }
 }
 
 .unfold{
@@ -36,5 +39,6 @@ $sideWidth: 240px;
   }
   .main{
     width: calc(100% - $sideWidth);
+    margin-left: $sideWidth;
   }
 }

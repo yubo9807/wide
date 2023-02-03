@@ -10,13 +10,22 @@
   </router-view>
 </template>
 
-<script>
+<script lang="ts">
+import { PropType } from 'vue';
+
+/**
+ * 页面缓存控制
+ * @props include
+ */
 export default {
   props: {
+    /**
+     * 最终会传给 keep-alive 的 include
+     */
     include: {
-      type: Array,
+      type: Array as PropType<string[]>,
       default: () => [],
     }
-  },
+  }
 }
 </script>

@@ -1,3 +1,4 @@
+import env from '@/common/env';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Login from '../views/login/index.vue';
 
@@ -19,7 +20,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/wide/www'),
+  history: createWebHistory(env.BASE_ROUTE_URL+'/www'),
   routes: routes,
 })
 

@@ -15,13 +15,14 @@ export default () => {
     breadcrumb.value = [];
     $route.matched.forEach(val => {
       if (val.name === 'Layout') return;
-      nowIcon.value = val.meta && val.meta.icon as string;
+      // nowIcon.value = val.meta && val.meta.icon as string;
       breadcrumb.value.push({
-        name: val.name,
-        path: val.path,
+        name:  val.name,
+        path:  val.path,
         title: val.meta && val.meta.title,
       })
     })
+    nowIcon.value = $route.matched[1].meta && $route.matched[1].meta.icon as string;
   }
 
   return {

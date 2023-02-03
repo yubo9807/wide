@@ -12,22 +12,15 @@
 
     const pathname = location.pathname;
 
-    if (/^\/wide\/permissions/.test(pathname)) {
+    if (/^\/wide\/admin/.test(pathname)) {
+      import('../src/sub-admin/main.ts');
+    } else if (/^\/wide\/permissions/.test(pathname)) {
       import('../src/sub-permissions/main.ts');
-    }else {
-      location.href = '/wide/permissions';
+    } else if (/^\/wide\/www/.test(pathname)) {
+      import('../src/sub-www/main.ts');
+    } else {
+      location.href = '/wide/admin';
     }
-    // const pathname = location.pathname;
-
-    // if (/^\/wide\/admin/.test(pathname)) {
-    //   import('../src/sub-admin/main.ts');
-    // } else if (/^\/wide\/permissions/.test(pathname)) {
-    //   import('../src/sub-permissions/main.ts');
-    // } else if (/^\/wide\/www/.test(pathname)) {
-    //   import('../src/sub-www/main.ts');
-    // } else {
-    //   location.href = '/wide/admin';
-    // }
 
   </script>
 </body>

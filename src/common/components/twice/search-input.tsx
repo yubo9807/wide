@@ -1,6 +1,9 @@
 import { ElInput } from "element-plus";
 import { defineComponent, getCurrentInstance, h } from "vue";
 
+/**
+ * 搜索区 input (二次封装)
+ */
 export default defineComponent({
 
   props: {

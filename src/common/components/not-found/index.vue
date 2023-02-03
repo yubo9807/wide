@@ -6,6 +6,9 @@
 </template>
 
 <script lang="ts">
+/**
+ * 404 页面
+ */
 export default {}
 </script>
 

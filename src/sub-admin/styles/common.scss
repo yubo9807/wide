@@ -41,18 +41,15 @@
 }
 
 @font-face {
-  font-family: 'iconfont';
-  src: url('@/assets/iconfont/iconfont.eot');
-  src: url('@/assets/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
-       url('@/assets/iconfont/iconfont.woff2') format('woff2'),
-       url('@/assets/iconfont/iconfont.woff') format('woff'),
-       url('@/assets/iconfont/iconfont.ttf') format('truetype'),
-       url('@/assets/iconfont/iconfont.svg#iconfont') format('svg');
+  font-family: 'iconfont';  /* Project id 2770358 */
+  src: url('//at.alicdn.com/t/c/font_2770358_4dwxtd1w6dw.woff2?t=1675211262140') format('woff2'),
+       url('//at.alicdn.com/t/c/font_2770358_4dwxtd1w6dw.woff?t=1675211262140') format('woff'),
+       url('//at.alicdn.com/t/c/font_2770358_4dwxtd1w6dw.ttf?t=1675211262140') format('truetype');
 }
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

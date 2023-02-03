@@ -5,7 +5,7 @@
       <!-- logo -->
       <div class="logo">
         <router-link to="/">
-          <img src="" alt="跨链服务平台">
+          <h1>后台管理系统</h1>
         </router-link>
       </div>
 
@@ -14,8 +14,7 @@
       
       <!-- 展开/收起 -->
       <span class="open" @click="open">
-        <i v-show="!unfold" class="iconfont">&#xe008;</i>
-        <i v-show="unfold" class="iconfont">&#xe009;</i>
+        <i class="iconfont icon">&#xe623;</i>
         <span v-show="!unfold">收起</span>
       </span>
     </aside>
@@ -38,7 +37,7 @@
 
 <script lang='ts'>
 import RouteCache from '@/common/components/route-cache/index.vue';
-import Menu from './components/menu/index.vue'
+import Menu from './components/menu/index.vue';
 import Header from './components/header/index.vue';
 import Tabs from './components/tabs/index.vue';
 import watchLoginStatus from './watch-login-status';
