@@ -1,5 +1,5 @@
 import useStoreUser from '../store/user';
-import { computed, watch } from 'vue';
+import { computed, onUnmounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 export default () => {

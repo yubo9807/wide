@@ -12,7 +12,7 @@
     <div class="right">
       <ul class="clearfix">
         <li class="user-name">
-          <img class="portrait" :src="env.BASE_RESOURCE_URL + userInfo.portrait" alt="">
+          <img class="portrait" :src="userInfo.portrait ? env.BASE_RESOURCE_URL + userInfo.portrait : ''" alt="">
           {{ userInfo.name }}
           <el-dropdown>
             <i class="iconfont icon-close">&#xe6b9;</i>

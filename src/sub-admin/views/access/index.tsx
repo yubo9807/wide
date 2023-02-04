@@ -7,7 +7,7 @@ import { api_getFileListOrContent } from "@/sub-admin/api/file";
 import { api_getAccessRecordList } from "@/sub-admin/api/access";
 
 // components
-import { ElButton, ElInput } from "element-plus";
+import { ElButton, ElInput, ElPagination } from "element-plus";
 import LayoutContainer from '@/common/components/layout-container/index.vue';
 import ShrinkInputSearch from "@/common/components/shrink-input-search";
 import ShrinkTable from "@/common/components/shrink-table";
@@ -17,6 +17,8 @@ import styles from './index.module.scss';
 import { dateFormater } from "@/common/utils/date";
 import { deleteEmpty } from "@/common/utils/object";
 import { pagingIndex } from "@/common/utils/number";
+
+
 
 
 export default defineComponent(() => {
@@ -38,9 +40,9 @@ export default defineComponent(() => {
     getNowDayData(nowDay);
   }
 
-  const JSX_Pagination = () => <el-pagination
-    currentPage={paging.pageNumber}
-    pageSize={paging.pageSize}
+  const JSX_Pagination = () => <ElPagination
+    defaultCurrentPage={paging.pageNumber}
+    defaultPageSize={paging.pageSize}
     total={paging.total}
     onCurrentChange={onCurrentChange}
     onSizeChange={onSizeChange}
@@ -59,7 +61,9 @@ export default defineComponent(() => {
 
   function search() {
     paging.pageNumber = 1;
-    getNowDayData(nowDay);
+    Promise.resolve().then(() => {
+      getNowDayData(nowDay);
+    })
   }
 
   function reset() {
@@ -75,8 +79,8 @@ export default defineComponent(() => {
 
   const JSX_Search = () => <ShrinkInputSearch storageKey="111" 
     inputList={[
-      { label: 'IP地址', slots: <ElInput placeholder='请输入IP地址' clearable modelValue={form.ip} onInput={value => form.ip = value} onKeydown={onKeydown} onClear={search} /> },
-      { label: '请求路径', slots: <ElInput placeholder='请输入请求路径' clearable modelValue={form.url} onInput={value => form.url = value} onKeydown={onKeydown} onClear={search} /> },
+      { label: 'IP地址', slots: <ElInput placeholder='请输入IP地址' modelValue={form.ip} onInput={value => form.ip = value} onKeydown={onKeydown} onClear={search} /> },
+      { label: '请求路径', slots: <ElInput placeholder='请输入请求路径' modelValue={form.url} onInput={value => form.url = value} onKeydown={onKeydown} onClear={search} /> },
       // { label: '访问时间', slots: <ElTimePicker modelValue={form.time} is-range range-separator="-" start-placeholder="开始时间" end-placeholder="结束时间" onInput={value => form.time = value} /> },
     ]}
     buttonList={[
@@ -183,14 +187,16 @@ export default defineComponent(() => {
 
 
 
-  return () => h(<LayoutContainer>
-    <JSX_MenuList />
-
-    <div class={styles.content}>
-      <JSX_Search />
-      <JSX_Table />
-      <JSX_Pagination />
-    </div>
+  return () => h(<LayoutContainer>{{
+    default: () => [
+      <JSX_MenuList />,
+      <div class={styles.content}>
+        <JSX_Search />
+        <JSX_Table />
+        <JSX_Pagination />
+      </div>
+    ]
+  }}
   </LayoutContainer>)
 
 })

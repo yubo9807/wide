@@ -1,14 +1,11 @@
 import { AnyObj } from "@/common/utils/type";
 import request from "./request";
 
-const baseURL = '/permissions'
-
 /**
  * 获取所有角色
  */
 export function api_getRoleList() {
   return request({
-    baseURL,
     url: '/v1/api/roles/list'
   })
 }
@@ -18,7 +15,6 @@ export function api_getRoleList() {
  */
 export function api_getMenuList(params: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/menu/list',
     method: 'get',
     params,
@@ -30,7 +26,6 @@ export function api_getMenuList(params: AnyObj) {
  */
 export function api_addMenu(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/menu/add',
     method: 'post',
     data,
@@ -42,7 +37,6 @@ export function api_addMenu(data: AnyObj) {
  */
 export function api_modifyMenu(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/menu/modify',
     method: 'post',
     data,
@@ -54,7 +48,6 @@ export function api_modifyMenu(data: AnyObj) {
  */
 export function api_deleteMenu(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/menu/delete',
     method: 'post',
     data,
@@ -68,7 +61,6 @@ export function api_deleteMenu(data: AnyObj) {
  */
 export function api_getInterfaceList(params: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/interface/list',
     method: 'get',
     params,
@@ -80,7 +72,6 @@ export function api_getInterfaceList(params: AnyObj) {
  */
 export function api_addInferface(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/interface/add',
     method: 'post',
     data,
@@ -92,7 +83,6 @@ export function api_addInferface(data: AnyObj) {
  */
 export function api_modifyInferface(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/interface/modify',
     method: 'post',
     data,
@@ -104,7 +94,6 @@ export function api_modifyInferface(data: AnyObj) {
  */
 export function api_deleteInterface(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/interface/delete',
     method: 'post',
     data,
@@ -118,7 +107,6 @@ export function api_deleteInterface(data: AnyObj) {
  */
 export function api_getElementList(params: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/element/list',
     method: 'get',
     params,
@@ -130,7 +118,6 @@ export function api_getElementList(params: AnyObj) {
  */
 export function api_addElement(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/element/add',
     method: 'post',
     data,
@@ -142,7 +129,6 @@ export function api_addElement(data: AnyObj) {
  */
 export function api_modifyElement(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/element/modify',
     method: 'post',
     data,
@@ -154,7 +140,6 @@ export function api_modifyElement(data: AnyObj) {
  */
 export function api_deleteElement(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/element/delete',
     method: 'post',
     data,
@@ -166,7 +151,6 @@ export function api_deleteElement(data: AnyObj) {
  */
 export function api_batchSynchronization(data: AnyObj) {
   return request({
-    baseURL,
     url: '/v1/api/correlation/synchronization',
     method: 'post',
     data,

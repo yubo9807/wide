@@ -7,7 +7,7 @@ export const DEBUGING = false;  // 在后端接口不通的情况下，开启它
 
 export const ROLE_CONFIG = Object.freeze({
   super: 'super',
-  2: 'user'
+  visitor: 'visitor'
 })
 
 const TOKEN = 'token';

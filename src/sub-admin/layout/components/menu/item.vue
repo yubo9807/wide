@@ -1,12 +1,12 @@
 <template>
-  <li>
+  <li :class="'tier-'+count">
     <a v-if="menu.children && menu.children.length > 0" :class="[isOpen?'active':'']" @click="open">
-      <i class="iconfont icon" v-html="menu.icon"></i>
+      <i v-if="count === 0" class="iconfont icon" v-html="menu.icon"></i>
       <span v-show="!unfold">{{ menu.title }}</span>
       <i class="iconfont icon-open">&#xe64b;</i>
     </a>
     <router-link v-else :to="{ name: menu.name }">
-      <i class="iconfont icon" v-html="menu.icon"></i>
+      <i v-if="count === 0" class="iconfont icon" v-html="menu.icon"></i>
       <span v-show="!unfold">{{ menu.title }}</span>
     </router-link>
 
@@ -15,7 +15,7 @@
       :class="['menu', isOpen?'active':'']"
       :style="{ height }"
     >
-      <MenuItem v-for="(item, index) in menu.children" :key="index" :menu="item" />
+      <MenuItem v-for="(item, index) in menu.children" :key="index" :menu="item" :count="count+1" />
     </ul>
 
   </li>
@@ -42,6 +42,13 @@ export default {
     nowRoutes: {
       type: Array as PropType<string[]>,
       default: []
+    },
+    /**
+     * 组件递归计数，不需要传递
+     */
+    count: {
+      type: Number,
+      default: 0,
     }
   },
   setup(props) {
@@ -145,6 +152,7 @@ a{
 }
 
 .icon{
+  font-size: 16px;
   margin-right: 6px;
 }
 

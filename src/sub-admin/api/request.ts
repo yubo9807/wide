@@ -5,6 +5,7 @@ import { asyncto, axiosRetry, fractureTips } from '@/common/utils/network';
 import useStoreUser, { getToken } from '../store/user';
 import useStoreRequest from '../store/request';
 import { isType } from '@/common/utils/type';
+import env from '@/common/env';
 
 fractureTips();
 
@@ -15,7 +16,7 @@ interface SateConfig extends AxiosRequestConfig {
 let loading = null;
 
 const config: AxiosRequestConfig = {
-  baseURL: '/api',
+  baseURL: env.VISIT_ORIGIN + '/api',
   timeout: 5000,
 };
 
@@ -65,7 +66,7 @@ instance.interceptors.response.use((response) => {
       console.error(Object.assign(data, { url: config.url }));
 
       // 退出登录
-      if ([401].includes(data.code)) {
+      if ([401, 403].includes(data.code)) {
         storeRequest.additionalTokenFailureCount();
         storeRequest.tokenFailureCount === 1 && ElMessageBox.confirm('登录信息已过期，请重新登录', '提示', {
           confirmButtonText: '确认',

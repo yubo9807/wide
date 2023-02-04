@@ -3,6 +3,7 @@ import { ElMessage, ElNotification, ElLoading, ElMessageBox } from 'element-plus
 
 import { asyncto, fractureTips } from '@/common/utils/network';
 import { isType } from '@/common/utils/type';
+import env from '@/common/env';
 
 fractureTips();
 
@@ -13,7 +14,7 @@ interface SateConfig extends AxiosRequestConfig {
 let loading = null;
 
 const config: AxiosRequestConfig = {
-  baseURL: '/permissions',
+  baseURL: env.VISIT_ORIGIN + '/permissions',
   timeout: 5000,
 };
 

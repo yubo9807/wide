@@ -29,13 +29,13 @@ const slidebar: Readonly<RouteRecordRaw> = {
           path: 'redis',
           name: 'ServersRedis',
           component: () => import('../views/servers/redis/index.vue'),
-          meta: { title: '数据缓存', roles: ['super', 'visitor'] },
+          meta: { title: '数据缓存', icon: '&#xe637;', roles: ['super', 'visitor'] },
         },
         {
           path: 'connector',
           name: 'ServersConnector',
           component: () => import('../views/servers/connector/index.vue'),
-          meta: { title: '接口日志', roles: ['super'] },
+          meta: { title: '接口日志', icon: '&#xe610;', roles: ['super'] },
         },
       ]
     },
@@ -55,7 +55,7 @@ const slidebar: Readonly<RouteRecordRaw> = {
       path: 'friend-link',
       name: 'FriendLink',
       component: () => import('../views/friend-link/index.vue'),
-      meta: { title: '友情链接', icon: '&#xe617;', roles: ['super'] },
+      meta: { title: '友情链接', icon: '&#xe617;' },
     },
   ]
 }

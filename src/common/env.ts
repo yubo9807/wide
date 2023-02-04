@@ -5,8 +5,6 @@ declare const process: AnyObj;
 export const DEVELOPMENT = 'development';
 export const PRODUCTION  = 'production';
 
-const VISIT_ORIGIN = window.origin;
-
 // 生产环境
 let env = {
 
@@ -14,7 +12,7 @@ let env = {
 
   BASE_ROUTE_URL: '/wide',
 
-  VISIT_ORIGIN,
+  VISIT_ORIGIN: 'http://hicky.hpyyb.cn',
 
   SYSTEM_NAME: '',
 
@@ -25,7 +23,7 @@ let env = {
 // 开发环境
 if (process.env.NODE_ENV === DEVELOPMENT) {
 
-  env.VISIT_ORIGIN = 'http://10.0.5.70';
+  env.VISIT_ORIGIN = 'http://localhost:20010';
 
 }
 

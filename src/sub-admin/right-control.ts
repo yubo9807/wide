@@ -1,5 +1,5 @@
 import router from './router';
-import useStoreUser from './store/user';
+import useStoreUser, { getToken } from './store/user';
 
 Promise.resolve().then(() => {
   const storeUser = useStoreUser();
@@ -8,6 +8,11 @@ Promise.resolve().then(() => {
 
     // 不属于 layout
     if (to.matched[0].name != 'Layout') return next();
+
+    if (!getToken()) {
+      router.replace('/login');
+      return next();
+    }
 
     // 获取用户信息，保证进入页面只请求一次
     lock && await storeUser.getUserInfo();

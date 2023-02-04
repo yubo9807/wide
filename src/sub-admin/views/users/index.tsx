@@ -5,7 +5,7 @@ import { defineComponent, h, reactive, ref } from "vue";
 import LayoutContainer from '@/common/components/layout-container/index.vue';
 import ShrinkInputSearch from "@/common/components/shrink-input-search";
 import ShrinkTable from "@/common/components/shrink-table";
-import { ElButton, ElInput, ElLink, ElMessageBox } from "element-plus";
+import { ElButton, ElInput, ElLink, ElMessageBox, ElPagination } from "element-plus";
 
 // utils
 import { dateFormater } from "@/common/utils/date";
@@ -35,9 +35,9 @@ export default defineComponent(() => {
     initData();
   }
 
-  const JSX_Pagination = () => <el-pagination
-    currentPage={paging.pageNumber}
-    pageSize={paging.pageSize}
+  const JSX_Pagination = () => <ElPagination
+    defaultCurrentPage={paging.pageNumber}
+    defaultPageSize={paging.pageSize}
     total={paging.total}
     onCurrentChange={onCurrentChange}
     onSizeChange={onSizeChange}
@@ -55,7 +55,7 @@ export default defineComponent(() => {
 
   function search() {
     paging.pageNumber = 1;
-    initData();
+    Promise.resolve().then(initData);
   }
 
   function reset() {
@@ -72,8 +72,8 @@ export default defineComponent(() => {
   const JSX_Search = () => <ShrinkInputSearch
     storageKey="222" 
     inputList={[
-      { label: '用户名', slots: <ElInput placeholder='请输入用户名' clearable modelValue={form.name} onInput={value => form.name = value} onKeydown={onKeydown} onClear={search} /> },
-      { label: '角色', slots: <ElInput placeholder='请输入角色' clearable modelValue={form.role} onInput={value => form.role = value} onKeydown={onKeydown} onClear={search} /> },
+      { label: '用户名', slots: <ElInput placeholder='请输入用户名' modelValue={form.name} onInput={value => form.name = value} onKeydown={onKeydown} onClear={search} /> },
+      { label: '角色', slots: <ElInput placeholder='请输入角色' modelValue={form.role} onInput={value => form.role = value} onKeydown={onKeydown} onClear={search} /> },
     ]}
     buttonList={[
       <ElButton type='primary' onClick={search}>{{ default: () => '搜索' }}</ElButton>,
@@ -130,10 +130,12 @@ export default defineComponent(() => {
 
 
 
-  return () => h(<LayoutContainer>
-    <JSX_Search />
-    <JSX_Table />
-    <JSX_Pagination />
+  return () => h(<LayoutContainer>{{
+    default: () => [
+      <JSX_Search />,
+      <JSX_Table />,
+      <JSX_Pagination />,
+    ]}}
   </LayoutContainer>)
 
 })

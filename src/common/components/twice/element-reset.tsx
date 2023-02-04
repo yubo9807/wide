@@ -29,6 +29,9 @@ Object.defineProperties(ElPagination.props, {
     value: { default: 'sizes, prev, pager, next, jumper, total' }
   },
   hideOnSinglePage: {
+    value: { default: false }
+  },
+  small: {
     value: { default: true }
   },
 })
@@ -47,7 +50,7 @@ Object.defineProperties(ElSelect.props, {
     value: { default: '请选择' }
   },
   clearable: {
-    value: { default: true }
+    value: { default: false }
   },
 })
 
