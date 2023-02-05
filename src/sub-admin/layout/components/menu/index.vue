@@ -25,5 +25,7 @@ export default {
 <style lang="scss" scoped>
 .menu{
   padding: 0 14px;
+  max-height: 66vh;
+  overflow-y: auto;
 }
 </style>
