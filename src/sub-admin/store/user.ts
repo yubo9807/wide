@@ -11,7 +11,6 @@ export const ROLE_CONFIG = Object.freeze({
 })
 
 const TOKEN = 'token';
-let lock = false;
 
 export function getToken() {
   return localStorage.getItem(TOKEN);
@@ -57,7 +56,6 @@ export default defineStore({
     signIn(token: string) {
       this.token = token;
       setToken(token);
-      this.getUserInfo();
     },
 
     /**
@@ -71,16 +69,12 @@ export default defineStore({
 
       if (!getToken()) return;
 
-      if (lock) return;  // 并发，防止多次调用
-
-      lock = true;
       const [err, res] = await api_getUserInfo();
       if (err) return;
 
       this.info = res.data;
       this.role = ROLE_CONFIG[res.data.role]
       this.login = 1;
-      lock = false;
     },
 
     /**

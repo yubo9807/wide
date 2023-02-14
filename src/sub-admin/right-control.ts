@@ -6,6 +6,9 @@ Promise.resolve().then(() => {
   let lock = true;
   router.beforeEach(async(to, from, next) => {
 
+    // 退出登录把锁打开，再次进入保证重新获取用户数据
+    if (storeUser.login === 2) lock = true;
+
     // 不属于 layout
     if (to.matched[0].name != 'Layout') return next();
 

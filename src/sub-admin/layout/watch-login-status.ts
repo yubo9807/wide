@@ -22,6 +22,7 @@ export default () => {
   function exitLayout() {
     const redirectHref = $route.path;
     $router.replace(`/login?redirect=${redirectHref}`);
+    storeUser.signOut();
   }
 
   return {}
