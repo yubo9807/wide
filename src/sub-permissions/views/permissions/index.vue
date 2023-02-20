@@ -59,7 +59,7 @@ import TableAddBtn from './components/table-add-btn/index.vue';
 import DialogMenu from './components/dialog-menu/index.vue';
 
 import { dateFormater } from '@/common/utils/date';
-import init from './init';
+import Init from './init';
 import operation from './operation';
 
 export default {
@@ -73,7 +73,7 @@ export default {
   setup() {
     return {
       dateFormater,
-      ...init(),
+      ...new Init(),
       ...operation(),
     }
   }

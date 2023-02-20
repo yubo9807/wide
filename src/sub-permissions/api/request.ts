@@ -14,7 +14,7 @@ interface SateConfig extends AxiosRequestConfig {
 let loading = null;
 
 const config: AxiosRequestConfig = {
-  baseURL: env.VISIT_ORIGIN + '/permissions',
+  baseURL: '/permissions',
   timeout: 5000,
 };
 

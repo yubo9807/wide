@@ -2,7 +2,7 @@
   <div class="element-list">
     <LayoutSearchHeader class="reset-search-header-input" right-width="340px">
       <template #left>
-        <el-input v-model="form.url" placeholder="请输入接口地址" @keyup.enter="search" @clear="search" />
+        <el-input v-model="form.name" placeholder="请输入元素名称" @keyup.enter="search" @clear="search" />
       </template>
       <template #right>
         <el-button type="primary" @click="search">查询</el-button>
@@ -39,7 +39,7 @@ import TableAddBtn from '../table-add-btn/index.vue';
 import DialogElement from '../dialog-element/index.vue';
 
 import { dateFormater } from '@/common/utils/date';
-import init from './init';
+import { Init } from './init';
 import operation from './operation';
 export default {
   components: {
@@ -59,7 +59,7 @@ export default {
   },
   setup: () => ({
     dateFormater,
-    ...init(),
+    ...new Init(),
     ...operation(),
   })
 }

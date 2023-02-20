@@ -40,7 +40,7 @@ import TableAddBtn from '../table-add-btn/index.vue';
 import DialogInterface from '../dialog-interface/index.vue';
 
 import { dateFormater } from '@/common/utils/date';
-import init from './init';
+import { Init } from './init';
 import operation from './operation';
 export default {
   components: {
@@ -60,7 +60,7 @@ export default {
   },
   setup: () => ({
     dateFormater,
-    ...init(),
+    ...new Init(),
     ...operation(),
   })
 }

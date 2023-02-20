@@ -1,148 +1,99 @@
-import { getCurrentInstance, nextTick, provide, reactive, ref, watch, watchEffect } from "vue"
+import { getCurrentInstance, nextTick, provide, reactive, ref, watch } from "vue"
 import { deleteEmpty } from "@/common/utils/object";
-import {
-  api_getRoleList,
-  api_getMenuList,
-} from '@/sub-permissions/api/permissions'
-
-export default () => {
-
-  const current = getCurrentInstance();
+import { api_getRoleList, api_getMenuList } from '@/sub-permissions/api/permissions';
+import { InitTable } from "@/common/utils/init-table";
 
 
-  const roleList = ref([]);
-  const nowRole = reactive({ role: '', id: '' });
-  
-  getRoleList();
-  async function getRoleList() {
-    const [err, res] = await api_getRoleList();
-    if (err) return;
+const searchForm = {
+  name: '',
+  title: '',
+}
 
-    const list = res.data;
-    roleList.value = list;
-    nowRole.role = list[0].role;
-    nowRole.id = list[0].id;
+export default class extends InitTable<typeof searchForm> {
+
+  #current = null;
+
+  nowRole = reactive({ role: '', id: '' });
+  roleList = ref([]);
+
+  constructor() {
+    super(searchForm, api_getMenuList);
+    this.#current = getCurrentInstance();
+
+    const self = this;
+    (async function() {
+      const [err, res] = await api_getRoleList();
+      if (err) return;
+
+      const list = res.data;
+      self.roleList.value = list;
+      self.nowRole.role = list[0].role;
+      self.nowRole.id = list[0].id;
+    }())
+
+    watch(() => this.nowRole.id, value => {
+      this.initData();
+    })
+
+    provide('getRoleList', () => this.roleList.value);
+    provide('getMenuList', () => this.tableData.value);
   }
 
 
-
-  // #region 分页
-  const paging = reactive({
-    pageNumber: 1,
-    pageSize: 10,
-    total: 0
-  })
-
-  function onCurrentChange(val: number) {
-    paging.pageNumber = val;
-    initData();
-  }
-  function onSizeChange(val: number) {
-    paging.pageSize = val;
-    initData();
-  }
-  // #endregion
-
-
-
-  // #region 搜索
-  const initialForm = {
-    name: '',
-    title: '',
-  }
-  const form = reactive(Object.assign({}, initialForm));
-
-  function search() {
-    paging.pageNumber = 1;
-    Promise.resolve().then(initData);
-  }
-
-  function reset() {
-    for (const key in initialForm) {
-      form[key] = initialForm[key];
-    }
-    search();
-  }
-  // #endregion
-
-
-
-  // #region 表格数据，初始化数据
-  const tableData = ref([]);
-  const flatData = ref([]);  // 原始数据
-  
-  watch(() => nowRole.id, value => {
-    initData();
-  })
-
-  /**
-   * 初始化数据
-   */
-  async function initData() {
-    const params = {
-      roleId: nowRole.id,
-      ...deleteEmpty(form),
-    }
+  flatData = ref([]);  // 原始数据
+  initData = async () => {
+    const params = deleteEmpty({
+      roleId: this.nowRole.id,
+      ...this.form,
+    })
     const [err, res] = await api_getMenuList(params);
     if (err) return;
 
     const list: any[] = disposeData(res.data);
-    flatData.value = res.data;
-    tableData.value = list;
+    this.flatData.value = res.data;
+    this.tableData.value = list;
 
     nextTick(() => {
-      const tableEl: any = current.refs.tableEl;
-      recursionSelected(tableData.value, tableEl);
+      const tableEl: any = this.#current.refs.tableEl;
+      recursionSelected(this.tableData.value, tableEl);
     })
-  }
+  };
 
-  /**
+}
+
+
+
+/**
    * 树形数据处理
    * @param list 数据
    * @param parent 不需要传递
    * @returns 
    */
-  function disposeData(list: any[], parent = null) {
-    const newList = [], childrenList = [];
-    list.forEach(val => {
-      val.parent === parent ? newList.push(val) : childrenList.push(val);
-    })
-    list.forEach(val => {
-      if (val.parent === parent) {
-        val.children = disposeData(childrenList, val.id);
-      };
-    });
-    return newList;
-  }
+function disposeData(list: any[], parent = null) {
+  const newList = [], childrenList = [];
+  list.forEach(val => {
+    val.parent === parent ? newList.push(val) : childrenList.push(val);
+  })
+  list.forEach(val => {
+    if (val.parent === parent) {
+      val.children = disposeData(childrenList, val.id);
+    };
+  });
+  return newList;
+}
 
-  function recursionSelected(list: any[], tableEl) {
-    list.forEach(val => {
-      tableEl.toggleRowSelection(val, val.selected);
-      if (val.children && val.children.length > 0) {
-        val.children.map(item => {
-          recursionSelected(val.children, tableEl)
-        })
-      }
-    });
-  }
-  // #endregion
-
-
-  provide('getRoleList', () => roleList.value);
-  provide('getMenuList', () => tableData.value);
-
-
-  return {
-    // 角色
-    ...{ roleList, nowRole },
-
-    // 表格数据
-    ...{ tableData, flatData, initData },
-
-    // 分页
-    ...{ paging, onSizeChange, onCurrentChange },
-
-    // 搜索
-    ...{ form, search, reset },
-  }
+/**
+ * 递归选择
+ * @param list 
+ * @param tableEl 
+ */
+function recursionSelected(list: any[], tableEl) {
+  list.forEach(val => {
+    tableEl.toggleRowSelection(val, val.selected);
+    if (val.children && val.children.length > 0) {
+      val.children.map(item => {
+        recursionSelected(val.children, tableEl)
+      })
+    }
+  });
 }
