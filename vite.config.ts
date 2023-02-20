@@ -9,7 +9,7 @@ const proxy = {
     changeOrigin: true,
   },
   '/permissions': {
-    target: 'http://127.0.0.1:20020',
+    target: 'http://hicky.hpyyb.cn',
     changeOrigin: true,
   },
 }
