@@ -1,69 +1,48 @@
 // npm
-import { defineComponent, h, reactive, ref } from "vue";
+import { defineComponent, h } from "vue";
 
 // components
 import LayoutContainer from '@/common/components/layout-container/index.vue';
 import ShrinkInputSearch from "@/common/components/shrink-input-search";
 import ShrinkTable from "@/common/components/shrink-table";
-import { ElButton, ElInput, ElLink, ElMessageBox, ElPagination } from "element-plus";
+import { ElButton, ElInput, ElLink, ElMessageBox } from "element-plus";
+import ElPagination from '@/common/components/twice/pagination';
+
 
 // utils
 import { dateFormater } from "@/common/utils/date";
-import { deleteEmpty } from "@/common/utils/object";
-import { pagingIndex } from "@/common/utils/number";
 
 // api
 import { api_getUserList } from "@/sub-admin/api/users";
+import { InitTable } from "@/common/utils/init-table";
+
+const searchForm = {
+  name: '',
+  role: '',
+}
+
+class Init extends InitTable<typeof searchForm> {
+  constructor() {
+    super(searchForm, api_getUserList);
+    this.initData();
+  }
+}
 
 
 export default defineComponent(() => {
 
 
-  // #region 分页
-  const paging = reactive({
-    pageNumber: 1,
-    pageSize:   10,
-    total:      0,
-  })
+  const {
+    // 分页
+    paging, onCurrentChange, onSizeChange, pagingIndex,
 
-  function onSizeChange(val: number) {
-    paging.pageSize = val;
-    initData();
-  }
-  function onCurrentChange(val: number) {
-    paging.pageNumber = val;
-    initData();
-  }
+    // 表格数据
+    tableData, initData,
 
-  const JSX_Pagination = () => <ElPagination
-    defaultCurrentPage={paging.pageNumber}
-    defaultPageSize={paging.pageSize}
-    total={paging.total}
-    onCurrentChange={onCurrentChange}
-    onSizeChange={onSizeChange}
-  />
-  // #endregion
+    // 搜索
+    form, search, reset,
+  } = new Init();
 
-
-
-  // #region 搜索
-  const initialForm = {
-    name: '',
-    role: '',
-  }
-  const form = reactive(Object.assign({}, initialForm));
-
-  function search() {
-    paging.pageNumber = 1;
-    Promise.resolve().then(initData);
-  }
-
-  function reset() {
-    for (const key in initialForm) {
-      form[key] = initialForm[key];
-    }
-    search();
-  }
 
   function onKeydown(e) {
     e.keyCode === 13 && search();  // 回车搜索
@@ -80,31 +59,9 @@ export default defineComponent(() => {
       <ElButton onClick={reset}>{{ default: () => '重置' }}</ElButton>,
     ]}
   />
-  // #endregion
-
 
 
   // #region 表格，访问记录
-  const tableData = ref([]);  // 访问数据
-
-  initData();
-  /**
-   * 获取当天访问数据
-   */
-  async function initData() {
-    const searchForm = deleteEmpty(form);
-    const params     = {
-      pageNumber: paging.pageNumber,
-      pageSize:   paging.pageSize,
-      ...searchForm,
-    }
-    const [err, res] = await api_getUserList(params);
-    if (err) return;
-    const { list, total } = res.data;
-    tableData.value = list;
-    paging.total = total;
-  }
-
   function deleteBlacklistIP(row) {
     ElMessageBox.confirm('确认注销当前用户', '警告', {
       confirmButtonText: '确认',
@@ -134,7 +91,13 @@ export default defineComponent(() => {
     default: () => [
       <JSX_Search />,
       <JSX_Table />,
-      <JSX_Pagination />,
+      <ElPagination
+        currentPage={paging.pageNumber}
+        pageSize={paging.pageSize}
+        total={paging.total}
+        onCurrentChange={onCurrentChange}
+        onSizeChange={onSizeChange}
+      />
     ]}}
   </LayoutContainer>)
 

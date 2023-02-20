@@ -102,8 +102,8 @@ export class InitTable<S, C = any> {
       return;
     }
 
-    const { data, total } = res.data;
-    this.tableData.value = data;
+    const { list, total } = res.data;
+    this.tableData.value = list;
     this.paging.total    = total;
   }
   // #endregion
