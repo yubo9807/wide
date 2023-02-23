@@ -18,7 +18,13 @@ Promise.resolve().then(() => {
     }
 
     // 获取用户信息，保证进入页面只请求一次
-    lock && await storeUser.getUserInfo();
+    if (lock) {
+      const result = await storeUser.getUserInfo();
+      if (!result) {
+        router.replace('/login');
+        return next();
+      }
+    }
     lock = false;
 
     // 没有设置权限，相当于设置了所有权限

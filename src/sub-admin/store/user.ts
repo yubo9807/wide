@@ -64,17 +64,18 @@ export default defineStore({
     async getUserInfo() {
       if (DEBUGING && env.NODE_ENV === DEVELOPMENT) {
         this.login = 1;
-        return;
+        return true;
       }
 
-      if (!getToken()) return;
+      if (!getToken()) return false;
 
       const [err, res] = await api_getUserInfo();
-      if (err) return;
+      if (err) return false;
 
       this.info = res.data;
       this.role = ROLE_CONFIG[res.data.role]
       this.login = 1;
+      return true;
     },
 
     /**
