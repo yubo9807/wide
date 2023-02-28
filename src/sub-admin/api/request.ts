@@ -87,14 +87,16 @@ function unificationIntercept(response: AxiosResponse<any, any>) {
   storeRequest.additionalCount(data.code);
 
   // 与后端协商 code 码
-  if (data.code === 200) Promise.resolve(data);
+  if (data.code === 200) return Promise.resolve(data);
 
+  // token 无效/被篡改，直接退出
   if (data.code === 401) {
-    // token 无效/被篡改，直接退出
     storeUser.signOut();
     return Promise.reject(data);
-  } else if (data.code === 403) {
-    // token 过期，提示用户退出登录
+  }
+
+  // token 过期，提示用户退出登录
+  if (data.code === 403) {
     storeRequest[403] === 1 && ElMessageBox.confirm('登录信息已过期，请重新登录', '提示', {
       confirmButtonText: '确认',
       cancelButtonText: '取消',
