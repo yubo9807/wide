@@ -5,14 +5,14 @@ type Config = {
   [prop in keyof typeof arr]?: number
 }
 
+/**
+ * 请求计数
+ */
 export default defineStore({
   id: 'request',
 
   // 每次切换页面都会重新计数
-  state: (): Config => ({
-    // errorCount: 0,  // 请求错误计数
-    // tokenFailureCount: 0,  // token 失效计数
-  }),
+  state: (): Config => ({}),
 
   actions: {
     /**
