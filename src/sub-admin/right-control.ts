@@ -28,7 +28,8 @@ Promise.resolve().then(() => {
     lock = false;
 
     // 没有设置权限，相当于设置了所有权限
-    const roles = to.meta.roles;
+    // 这里的 to.meta 会继承父级的属性，不晓得为啥子
+    const roles = to.matched[to.matched.length-1].meta.roles;
     if (!roles) return next();
 
     // 符合设置权限

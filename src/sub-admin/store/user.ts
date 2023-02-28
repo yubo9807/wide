@@ -2,6 +2,7 @@ import { api_getUserInfo } from "../api/login";
 import { defineStore } from "pinia";
 import env, { DEVELOPMENT } from "@/common/env";
 import { AnyObj } from "@/common/utils/type";
+import useStoreTabs from "./tabs";
 
 export const DEBUGING = false;  // 在后端接口不通的情况下，开启它跳转相应的路有进行开发
 
@@ -11,6 +12,9 @@ export const ROLE_CONFIG = Object.freeze({
 })
 
 const TOKEN = 'token';
+
+let storeTabs = null;
+Promise.resolve().then(() => storeTabs = useStoreTabs());
 
 export function getToken() {
   return localStorage.getItem(TOKEN);
@@ -86,6 +90,7 @@ export default defineStore({
       this.token = '';
       delToken();
       this.login = 2;
+      storeTabs.clearAll();
     },
   }
 })

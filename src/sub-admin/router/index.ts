@@ -1,19 +1,25 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import env from '@/common/env';
-import Login from '../views/login/index.vue';
-import layout from './slidebar';
+import Layout from '../layout/index.vue';
+import { layoutRoutes } from './create-routes'
 
 const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: () => import('../views/login/index.vue'),
   },
-  layout,
+  {
+    path: '/',
+    name: 'Layout',
+    component: Layout,
+    redirect: layoutRoutes[0].path,
+    children: layoutRoutes
+  },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: import('@/common/components/not-found/index.vue'),
+    component: () => import('@/common/components/not-found/index.vue'),
   }
 ]
 
