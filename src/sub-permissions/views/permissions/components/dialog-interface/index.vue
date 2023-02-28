@@ -13,7 +13,7 @@
         <el-input v-model="form.url" />
       </el-form-item>
       <el-form-item label="父级菜单">
-        <el-tree-select v-model="form.menuId" :data="menuList" :props="{ children: 'children', label: 'title', value: 'id' }" :render-after-expand="false" :disabled="type === 0" @node-click="treeNodeClick" />
+        <el-tree-select v-model="form.menuId" :data="menuList" clearable :props="{ children: 'children', label: 'title', value: 'id' }" :render-after-expand="false" :disabled="type === 0" @node-click="treeNodeClick" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit">确认</el-button>

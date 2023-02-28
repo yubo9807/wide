@@ -14,7 +14,7 @@ interface SateConfig extends AxiosRequestConfig {
 let loading = null;
 
 const config: AxiosRequestConfig = {
-  baseURL: '/permissions',
+  baseURL: 'http://hicky.hpyyb.cn/permissions',
   timeout: 5000,
 };
 

@@ -2,7 +2,7 @@
   <LayoutContainer>
     <LayoutSearch class="reset-search-header-input" right-width="430px">
       <template #left>
-        <el-select v-model="nowRole.id" :clearable="false">
+        <el-select v-model="nowRole.id">
           <el-option v-for="(item, index) in roleList" :key="index" :label="item.role" :value="item.id" />
         </el-select>
         <el-input v-model="form.title" class="input" placeholder="请输入菜单名称" @keyup.enter="search" @clear="search" />

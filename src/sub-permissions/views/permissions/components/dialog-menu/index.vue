@@ -8,7 +8,7 @@
         <el-input v-model="form.name" placeholder="保证唯一，对应前端路由设置 name" />
       </el-form-item>
       <el-form-item label="父级菜单">
-        <el-tree-select v-model="form.parent" :data="menuList" :props="{ children: 'children', label: 'title', value: 'id' }" :render-after-expand="false" @node-click="treeNodeClick" />
+        <el-tree-select v-model="form.parent" :data="menuList" clearable :props="{ children: 'children', label: 'title', value: 'id' }" :render-after-expand="false" @node-click="treeNodeClick" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit">确认</el-button>
