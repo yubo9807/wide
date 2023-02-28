@@ -3,7 +3,7 @@
  * @Author: yangyb
  * @Date: 2022-02-23 08:58:26
  * @LastEditors: yangyubo
- * @LastEditTime: 2022-12-20 15:46:37
+ * @LastEditTime: 2023-02-28 14:43:10
  */
 
 import { AxiosInstance } from 'axios';
@@ -75,7 +75,7 @@ export function asyncto(promise: Promise<any>, errorExt: string = '') {
 }
 
 /**
- * 断网提示
+ * 注册断网提示
  */
 export function fractureTips() {
   window.addEventListener('online', () => {

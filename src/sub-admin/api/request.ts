@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { ElMessage, ElNotification, ElLoading, ElMessageBox } from 'element-plus';
 
-import { asyncto, axiosRetry, fractureTips } from '@/common/utils/network';
+import { asyncto, fractureTips } from '@/common/utils/network';
 import useStoreUser, { getToken } from '../store/user';
 import useStoreRequest from '../store/request';
 import { isType } from '@/common/utils/type';
@@ -22,11 +22,6 @@ const config: AxiosRequestConfig = {
 
 const instance = axios.create(config);
 
-// axiosRetry(instance, {
-//   retries:    3,
-//   retryDelay: 3000,
-//   retryTips:  () => ElMessage.warning('网络错误，正在尝试重新连接'),
-// });
 
 // 请求拦截器
 instance.interceptors.request.use(config => {
@@ -62,13 +57,14 @@ instance.interceptors.response.use((response) => {
     if (data.code === 200) {
       return Promise.resolve(data);
     } else {
-      storeRequest.additionalErrorCount();
+      storeRequest.additionalCount(data.code);
       console.error(Object.assign(data, { url: config.url }));
 
       // 退出登录
       if ([401, 403].includes(data.code)) {
-        storeRequest.additionalTokenFailureCount();
-        storeRequest.tokenFailureCount === 1 && ElMessageBox.confirm('登录信息已过期，请重新登录', '提示', {
+        storeRequest.additionalCount(data.code);
+        storeRequest[401] === 1 && storeUser.signOut();
+        storeRequest[403] === 1 && ElMessageBox.confirm('登录信息已过期，请重新登录', '提示', {
           confirmButtonText: '确认',
           cancelButtonText: '取消',
           type: 'warning',
@@ -88,10 +84,10 @@ instance.interceptors.response.use((response) => {
 }, error => {
   loading.close();
   const storeRequest = useStoreRequest();
-  storeRequest.additionalErrorCount();
-
+  
   if (error.response) {
     !error.config.noTips && ElMessage.error(error.response.data.error);
+    storeRequest.additionalCount(error.response.data.code);;
     return Promise.reject(error.response.data);
   }
 
