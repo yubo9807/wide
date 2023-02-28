@@ -20,7 +20,7 @@ export default defineConfig({
   plugins: [
     vue(),
     viteCompression({
-      threshold: 1024 * 300,
+      threshold: 1024 * 40,
     })
   ],
   resolve: {

@@ -47,7 +47,6 @@ export default defineStore({
 
     /**
      * 设置用户信息
-     * @note 有些后端喜欢把信息返回在登录接口内
      */
     setInfo(info: AnyObj) {
       this.info = info;
