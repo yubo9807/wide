@@ -20,7 +20,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('@/common/components/not-found/index.vue'),
-  }
+  },
 ]
 
 const router = createRouter({
@@ -28,4 +28,4 @@ const router = createRouter({
   routes: routes,
 })
 
-export default router
+export default router;

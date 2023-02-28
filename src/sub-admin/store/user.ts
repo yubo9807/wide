@@ -28,9 +28,9 @@ function delToken() {
 
 type State = {
   login: 0 | 1 | 2  // 0: 未登录，1: 已登陆，2: 已退出
-  role: string  // 角色
+  role:  string  // 角色
   token: string
-  info: AnyObj  // 用户信息
+  info:  AnyObj  // 用户信息
 }
 
 export default defineStore({
@@ -38,9 +38,9 @@ export default defineStore({
 
   state: (): State => ({
     login: 0,
-    role: null,
+    role:  null,
     token: getToken() || '',
-    info: {},
+    info:  {},
   }),
 
   actions: {

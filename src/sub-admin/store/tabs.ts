@@ -1,12 +1,11 @@
 import { defineStore } from "pinia";
 
-
 export default defineStore({
   id: 'tabs',
 
   state: () => ({
     exclude: ['Home'],
-    names: [],
+    names:   [],
   }),
 
   actions: {

@@ -5,7 +5,7 @@ export default defineStore({
 
   state: () => ({
     clientWidth: 0,
-    scrollY: 0,
+    scrollY:     0,
   }),
 
   actions: {
