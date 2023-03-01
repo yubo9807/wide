@@ -15,6 +15,9 @@ import { dateFormater } from "@/common/utils/date";
 import Init from './init';
 
 
+
+const SHRINKKEY = 'page-access';
+
 export default defineComponent(() => {
 
   const $route = useRoute();
@@ -31,7 +34,8 @@ export default defineComponent(() => {
     e.keyCode === 13 && search();  // 回车搜索
   }
 
-  const JSX_Search = () => <ShrinkInputSearch storageKey="111" 
+  const JSX_Search = () => <ShrinkInputSearch
+    storageKey={SHRINKKEY} 
     inputList={[
       { label: 'IP地址', slots: <ElInput placeholder='请输入IP地址' modelValue={form.ip} onInput={value => form.ip = value} onKeydown={onKeydown} onClear={search} /> },
       { label: '请求路径', slots: <ElInput placeholder='请输入请求路径' modelValue={form.url} onInput={value => form.url = value} onKeydown={onKeydown} onClear={search} /> },
@@ -59,7 +63,7 @@ export default defineComponent(() => {
     { prop: 'url', label: 'PATH' },
   ]
 
-  const JSX_Table = () => <ShrinkTable storageKey="111" tableProps={{ data: tableData.value }} tableColumnProps={tableColumnProps} /> 
+  const JSX_Table = () => <ShrinkTable storageKey={SHRINKKEY} tableProps={{ data: tableData.value }} tableColumnProps={tableColumnProps} /> 
 
 
   const JSX_MenuList = () => h(<ul class={styles.menu}>

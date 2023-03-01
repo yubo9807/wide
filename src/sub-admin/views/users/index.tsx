@@ -16,6 +16,10 @@ import { dateFormater } from "@/common/utils/date";
 import { api_getUserList } from "@/sub-admin/api/users";
 import { InitTable } from "@/common/utils/init-table";
 
+
+
+const SHRINKKEY = 'page-users';
+
 const searchForm = {
   name: '',
   role: '',
@@ -27,7 +31,6 @@ class Init extends InitTable<typeof searchForm> {
     this.initData();
   }
 }
-
 
 export default defineComponent(() => {
 
@@ -49,7 +52,7 @@ export default defineComponent(() => {
   }
 
   const JSX_Search = () => <ShrinkInputSearch
-    storageKey="222" 
+    storageKey={SHRINKKEY} 
     inputList={[
       { label: '用户名', slots: <ElInput placeholder='请输入用户名' modelValue={form.name} onInput={value => form.name = value} onKeydown={onKeydown} onClear={search} /> },
       { label: '角色', slots: <ElInput placeholder='请输入角色' modelValue={form.role} onInput={value => form.role = value} onKeydown={onKeydown} onClear={search} /> },
@@ -82,7 +85,7 @@ export default defineComponent(() => {
     { label: '操作', fixed: 'right', width: 80, slots: (scope) => <ElLink type="danger" onClick={() => deleteBlacklistIP(scope.row)}>{{ default: () => '注销'}}</ElLink> }
   ]
 
-  const JSX_Table = () => <ShrinkTable storageKey="222" tableProps={{ data: tableData.value }} tableColumnProps={tableColumnProps} /> 
+  const JSX_Table = () => <ShrinkTable storageKey={SHRINKKEY} tableProps={{ data: tableData.value }} tableColumnProps={tableColumnProps} /> 
   // #endregion
 
 
