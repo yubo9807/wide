@@ -64,9 +64,9 @@ export default defineConfig({
           }
           if (url.includes('src/common/utils')) return 'utils';
           if (url.includes('src/sub-admin/layout')) return 'layout';
-          // if (url.includes('src/sub-admin/views')) {
-          //   return 'page-' + url.toString().split('src/sub-admin/views/')[1].split('/')[0].toString();
-          // }
+          if (url.includes('src/sub-admin/views') && !url.includes('src/sub-admin/views/home')) {
+            return 'page-' + url.toString().split('src/sub-admin/views/')[1].split('/')[0].toString();
+          }
         }
       }
     }
