@@ -48,9 +48,9 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'page/index.html'),
 
-        // www: path.resolve(__dirname, 'page/www/index.html'),
-        // admin: path.resolve(__dirname, 'page/admin/index.html'),
-        // permissions: path.resolve(__dirname, 'page/permissions/index.html'),
+        www: path.resolve(__dirname, 'page/www/index.html'),
+        admin: path.resolve(__dirname, 'page/admin/index.html'),
+        permissions: path.resolve(__dirname, 'page/permissions/index.html'),
       },
       output: {
         manualChunks(url) { // 分包
