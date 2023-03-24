@@ -24,6 +24,11 @@ jobs:
 
     - name: Build
       run: |
-        npm i -D @jridgewell/sourcemap-codec
         npm i
-        npx run build
+        npm run build
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        branch: deploy
+        folder: dist
