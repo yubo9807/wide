@@ -34,7 +34,7 @@ export default defineConfig({
     jsxFactory: 'h',
     jsxFragment: 'Fragment',
   },
-  // base: '/wide/',
+  base: '/wide/',
   server: { proxy },
   preview: { proxy },
 
