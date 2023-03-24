@@ -24,6 +24,6 @@ jobs:
 
     - name: Build
       run: |
-        npm install
         npm i -D @jridgewell/sourcemap-codec
+        npm i
         npx run build
