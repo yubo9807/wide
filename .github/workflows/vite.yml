@@ -26,9 +26,3 @@ jobs:
       run: |
         npm install
         npx run build
-
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.3.3
-      with:
-        branch: deploy
-        folder: dist
